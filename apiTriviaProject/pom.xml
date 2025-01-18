@@ -22,7 +22,8 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-
+		
+		<!-- Jackson Databind for JSON processing -->
 		<!--https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -30,6 +31,7 @@
 			<version>2.15.2</version>
 		</dependency>
 
+		<!-- Apache HttpClient for HTTP operations -->
 		<!--https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient-->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
