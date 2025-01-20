@@ -8,6 +8,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import exception.TriviaAPIException;
 import pojoModel.TriviaRequest;
 import pojoModel.TriviaResponse;
 import java.net.URI;
@@ -20,7 +22,7 @@ public class TriviaAPIService {
 	public static void main(String[] args) {
 		try {
 			// Call the function
-			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(2, "16", "Any", "Any");
+			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(200, "33", "Med", "Any");
 
 			// print response code
 			System.out.println("Response Code: " + triviaResponse.getResponseCode());
@@ -49,14 +51,19 @@ public class TriviaAPIService {
 
 	
 	// method to get API data 
-	public static TriviaResponse getAPIData(int amount, String category, String difficulty, String type) throws Exception {
+	public static TriviaResponse getAPIData(int amount, String category, String difficulty, String type) throws TriviaAPIException, Exception {
 		
 		// Check if amount is greater than 1
 	    if (amount < 1) {
 	        // Throw custom exception if amount is less than 1
-	        throw new Exception("Amount must be greater than 1.");
+	        throw new TriviaAPIException("Amount must be greater than 1.");
 	    }
-
+	    
+	    if (amount ==200) {
+	    	 throw new TriviaAPIException("amount is 200");
+	    	
+	    }
+	    
 	    // Create a URIBuilder object and start building the URL with the base URL
 	    URIBuilder uriBuilder = new URIBuilder(BASE_URL);
 	    
@@ -119,7 +126,7 @@ public class TriviaAPIService {
 	                
 	            } else {
 	                // Throw an exception if the response entity is empty
-	                throw new Exception("Empty response from server");
+	                throw new TriviaAPIException("Empty response from server");
 	            }
 
 	        } else {
@@ -127,6 +134,9 @@ public class TriviaAPIService {
 	            throw new Exception("Unexpected response status: " + status_code);
 	        }
 
+	    } catch (Exception e ) {
+	    	throw new TriviaAPIException("Error occurred while calling the Trivia API", e);
+	    	
 	    }
 		
 	}
