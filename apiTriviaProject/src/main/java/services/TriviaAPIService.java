@@ -133,7 +133,8 @@ public class TriviaAPIService {
 	            // Throw an exception for non-successful response status
 	            throw new Exception("Unexpected response status: " + status_code);
 	        }
-
+	        
+	      // in case of URISyntaxException,IOException exceptions
 	    } catch (Exception e ) {
 	    	throw new TriviaAPIException("Error occurred while calling the Trivia API", e);
 	    	
