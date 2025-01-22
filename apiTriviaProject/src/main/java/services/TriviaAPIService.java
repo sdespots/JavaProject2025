@@ -22,7 +22,7 @@ public class TriviaAPIService {
 	public static void main(String[] args) {
 		try {
 			// Call the function
-			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(200, "33", "Med", "Any");
+			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(200, "33", "Medium", "Any");
 
 			// print response code
 			System.out.println("Response Code: " + triviaResponse.getResponseCode());
