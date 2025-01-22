@@ -60,10 +60,32 @@ public class TriviaAPIServiceTest {
 		} catch (TriviaAPIException exception) {
 
 			// Check the exception message
-			Assert.assertEquals("Amount must be greater than 1.", exception.getMessage());
+			Assert.assertEquals("Amount must be greater than 1!", exception.getMessage());
 			System.out.println(exception.getMessage());
 		}
 	}
+	
+	@Test
+	public void testGetAPIDataAmountLessThan50() throws TriviaAPIException, Exception {
+		try {
+
+			// Create the TriviaAPIService instance
+			TriviaAPIService triviaService = new TriviaAPIService();
+
+			// Call the method that should throw an exception
+			triviaService.getAPIData(51, "9", "easy", "multiple");
+
+			// If there is no exception, fail the test
+			Assert.fail();
+
+		} catch (TriviaAPIException exception) {
+
+			// Check the exception message
+			Assert.assertEquals("Amount must be less than 50!", exception.getMessage());
+			System.out.println(exception.getMessage());
+		}
+	}
+
 
 	@Test
 	public void testGetAPIHTTPStatusCodeSuccess() throws TriviaAPIException, Exception {

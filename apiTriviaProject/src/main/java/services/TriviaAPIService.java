@@ -53,14 +53,15 @@ public class TriviaAPIService {
 	// method to get API data 
 	public static TriviaResponse getAPIData(int amount, String category, String difficulty, String type) throws TriviaAPIException, Exception {
 		
-		// Check if amount is greater than 1
+		// Check if amount is greater than 1 based on the API Documentation
 	    if (amount < 1) {
 	        // Throw custom exception if amount is less than 1
-	        throw new TriviaAPIException("Amount must be greater than 1.");
+	        throw new TriviaAPIException("Amount must be greater than 1!");
 	    }
 	    
-	    if (amount ==200) {
-	    	 throw new TriviaAPIException("amount is 200");
+	 // Check if amount is less than 50 based on the API Documentation
+	    if (amount > 50) {
+	    	 throw new TriviaAPIException("Amount must be less than 50!");
 	    	
 	    }
 	    
