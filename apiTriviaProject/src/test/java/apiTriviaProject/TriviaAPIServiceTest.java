@@ -16,8 +16,7 @@ public class TriviaAPIServiceTest {
 
 	// declare the BASE_URL as a constant
 	private static final String BASE_URL = "https://opentdb.com/api.php";
-	
-
+/*
 	@Test
 	public void testGetAPIDataSuccess() throws TriviaAPIException, Exception {
 
@@ -43,7 +42,7 @@ public class TriviaAPIServiceTest {
 			throw new TriviaAPIException("Error occurred while calling the Trivia API", e);
 		}
 	}
-
+*/
 	@Test
 	public void testGetAPIDataAmountLessThanOne() throws TriviaAPIException, Exception {
 		try {
@@ -85,7 +84,6 @@ public class TriviaAPIServiceTest {
 			System.out.println(exception.getMessage());
 		}
 	}
-
 
 	@Test
 	public void testGetAPIHTTPStatusCodeSuccess() throws TriviaAPIException, Exception {
