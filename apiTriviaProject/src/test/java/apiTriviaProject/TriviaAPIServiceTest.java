@@ -64,7 +64,7 @@ public class TriviaAPIServiceTest {
 			System.out.println(exception.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testGetAPIDataAmountLessThan50() throws TriviaAPIException, Exception {
 		try {
