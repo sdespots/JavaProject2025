@@ -1,6 +1,7 @@
 package trivia.guiTriviaProject;
 
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
@@ -44,4 +45,7 @@ public class TrueFalseSceneCreator {
 
 	}
 	
+	public Scene createTrueFalseScene() {
+		return new Scene(gridPane, 400, 400);
+	}
 }

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class App extends Application {
 
 	// Stages
@@ -14,7 +15,8 @@ public class App extends Application {
 
 	static Scene homeScene; // Declaring the homeScene variable, belonging to the Scene class.
 	static Scene quizScene; // Declaring the quizScene variable, belonging to the Scene class.
-	static Scene triviaGameScene; // Declaring the triviaGameScene variable, belonging to the Scene class.
+	static Scene multipleChoiceScene; // Declaring the triviaGameScene variable, belonging to the Scene class.
+	static Scene trueFalseScene;
 
 	
 	// Labels
@@ -31,7 +33,7 @@ public class App extends Application {
 
 		this.window = stage;
 		
-		// understand this.
+		// Here we call all the methods necessary to create the Scenes. The methods themselves are created in the respective classes.
 		
 		HomeSceneCreator homeSceneCreator = new HomeSceneCreator(); // Calling the constructor of the HomeSceneCreator class, to construct the class.		
 		homeScene = homeSceneCreator.createHomeScene(); // Calling the createHomeScene method of the homeSceneCreator class, to fill the object with values.
@@ -39,6 +41,12 @@ public class App extends Application {
 		QuizParametersSceneCreator quizParametersSceneCreator = new QuizParametersSceneCreator(); // Calling the constructor of the QuizParametersSceneCreator class, to construct the class.		
 		quizScene = quizParametersSceneCreator.createQuizParametersScene(); // Calling the createQuizParemetersScene method of the quizParametersSceneCreator class, to fill the object with values.
 
+		MultipleChoiceSceneCreator multipleChoiceSceneCreator = new MultipleChoiceSceneCreator();
+		multipleChoiceScene = multipleChoiceSceneCreator.createMultipleChoiceScene();
+		
+		TrueFalseSceneCreator trueFalseSceneCreator = new TrueFalseSceneCreator();
+		trueFalseScene = trueFalseSceneCreator.createTrueFalseScene();
+		
 		
 		// understand this.
 		

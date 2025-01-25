@@ -1,5 +1,6 @@
 package trivia.guiTriviaProject;
 
+import exception.TriviaAPIException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -9,6 +10,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import pojoModel.TriviaResponse;
+import services.TriviaAPIService;
 
 public class QuizParametersSceneCreator implements EventHandler<ActionEvent> {
 	
@@ -26,6 +29,8 @@ public class QuizParametersSceneCreator implements EventHandler<ActionEvent> {
 	Button startQuizBtn;
 	Button quitBtn;
 
+	// Populating the constructor method.
+	
 	public QuizParametersSceneCreator() {
 			
 		gridPane = new GridPane();
@@ -106,7 +111,15 @@ public class QuizParametersSceneCreator implements EventHandler<ActionEvent> {
 		}
 		
 		if(event.getSource() == startQuizBtn) {
-			getChoice(noQuestionsInput, categoryInput, difficultyInput, typeInput);
+			try {
+				getChoice(noQuestionsInput, categoryInput, difficultyInput, typeInput);
+			} catch (TriviaAPIException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	//	if(event.getSource() == startQuizBtn) {
@@ -132,15 +145,23 @@ public class QuizParametersSceneCreator implements EventHandler<ActionEvent> {
 	
 	// Creating a method to retrieve all data that the user inputs using our fields.
 	
-	private void getChoice(TextField noQuestionsInput, ChoiceBox<String> categoryInput, ChoiceBox<String> difficultyInput, ChoiceBox<String> typeInput) {
-		String questions = noQuestionsInput.getText();
+	private void getChoice(TextField noQuestionsInput, ChoiceBox<String> categoryInput, ChoiceBox<String> difficultyInput, ChoiceBox<String> typeInput) throws TriviaAPIException, Exception {
+		int amount = Integer.parseInt(noQuestionsInput.getText()); // Parsing text to integer.
 		String category = categoryInput.getValue();
 		String difficulty = difficultyInput.getValue();
 		String type = typeInput.getValue();
-		System.out.println(questions);
+		System.out.println(amount);
 		System.out.println(category);
 		System.out.println(difficulty);
 		System.out.println(type);
+		
+		// Implementing a condition that none of the input values are null.
+		
+		if (category == null || difficulty == null || type == null) {
+			throw new IllegalArgumentException("All inputs must be selected!");
+		}
+		
+		TriviaResponse response = TriviaAPIService.getAPIData(amount, category, difficulty,type);
 		
 	}
 	
