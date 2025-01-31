@@ -109,7 +109,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/stell/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar" sourcepath="C:/Users/stell/.m2/repository/junit/junit/4.13.2/junit-4.13.2-sources.jar">
+	<classpathentry kind="lib" path="C:/Users/despotst/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar" sourcepath="C:/Users/despotst/.m2/repository/junit/junit/4.13.2/junit-4.13.2-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="module" value="true"/>

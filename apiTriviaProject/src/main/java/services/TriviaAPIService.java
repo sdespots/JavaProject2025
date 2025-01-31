@@ -22,7 +22,7 @@ public class TriviaAPIService {
 	public static void main(String[] args) {
 		try {
 			// Call the function
-			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(200, "33", "Medium", "Any");
+			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(200, 1, "Medium", "Any");
 
 			// print response code
 			System.out.println("Response Code: " + triviaResponse.getResponseCode());
@@ -49,8 +49,9 @@ public class TriviaAPIService {
 		}
 	}
 
-	// method to get API data
-	public static TriviaResponse getAPIData(int amount, String category, String difficulty, String type)
+	// method to get API data -- Allaksa se int to category gia na mporoume na to apothikeusoume stin TriviaResponse (afou stelnoume to ID tou category kai oxi to onoma)
+	
+	public static TriviaResponse getAPIData(int amount, int category, String difficulty, String type)
 			throws TriviaAPIException, Exception {
 
 		// Check if amount is greater than 1 based on the API Documentation
@@ -71,14 +72,14 @@ public class TriviaAPIService {
 		// Add the 'amount' parameter to the URL
 		uriBuilder.addParameter("amount", String.valueOf(amount));
 
-		// Add other parameters only if they are not equal to "Any"
-		if (!category.equals("Any")) {
-			uriBuilder.addParameter("category", category);
+		 //Add other parameters only if they are not equal to "Any" 
+		if (!(category == 0)) {
+			uriBuilder.addParameter("category", String.valueOf(category)); 
 		}
-		if (!difficulty.equals("Any")) {
+		if (!difficulty.equals("any")) {
 			uriBuilder.addParameter("difficulty", difficulty);
 		}
-		if (!type.equals("Any")) {
+		if (!type.equals("any")) {
 			uriBuilder.addParameter("type", type);
 		}
 
@@ -142,4 +143,4 @@ public class TriviaAPIService {
 		}
 
 	}
-}
+	}

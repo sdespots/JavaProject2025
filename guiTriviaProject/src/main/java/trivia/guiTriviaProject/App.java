@@ -7,51 +7,58 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-	// Stages
+	// Declaring our stage. The static nature of this field facilitates scene switching.
 
-	static Stage window; // Declaring the window variable, belonging to the Stage class.
+	static Stage window; 
 
-	// Scenes
+	// Declaring our scenes - the three different application screens.
 
-	static Scene homeScene; // Declaring the homeScene variable, belonging to the Scene class.
-	static Scene quizScene; // Declaring the quizScene variable, belonging to the Scene class.
-	static Scene multipleChoiceScene; // Declaring the triviaGameScene variable, belonging to the Scene class.
-	static Scene trueFalseScene;
-
-	
-	// Labels
+	static Scene homeScene; 
+	static Scene quizScene; 
+	static Scene actualQuizScene; 
+		
+	// launch(args) is a JavaFX method starting the GUI.
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
 
-
+	// Declaring the start method.
+	
 	@Override
 	public void start(Stage stage) throws Exception {
-		stage.setTitle("Stella's and Stefanos' Trivia Game!"); // Stage title, which will essentially be the window
-		// title.
+		
+		// Setting the stage title, which will essentially be the browser window.
+		
+		stage.setTitle("Stella's and Stefanos' Trivia Game!"); 
+
+		// Assign the stage reference to our static variable for scene management
 
 		this.window = stage;
 		
-		// Here we call all the methods necessary to create the Scenes. The methods themselves are created in the respective classes.
+		// Below we call all the methods necessary to initialize the Scenes. The methods themselves are created in the respective classes.
+			
+		HomeSceneCreator homeSceneCreator = new HomeSceneCreator(); 		
 		
-		HomeSceneCreator homeSceneCreator = new HomeSceneCreator(); // Calling the constructor of the HomeSceneCreator class, to construct the class.		
-		homeScene = homeSceneCreator.createHomeScene(); // Calling the createHomeScene method of the homeSceneCreator class, to fill the object with values.
+		// Calling the createHomeScene method of the homeSceneCreator class, in order to create the class instance.
+		// The same code is reproduced with minor variations for the same classes.
+		
+		homeScene = homeSceneCreator.createHomeScene(); 
 
-		QuizParametersSceneCreator quizParametersSceneCreator = new QuizParametersSceneCreator(); // Calling the constructor of the QuizParametersSceneCreator class, to construct the class.		
-		quizScene = quizParametersSceneCreator.createQuizParametersScene(); // Calling the createQuizParemetersScene method of the quizParametersSceneCreator class, to fill the object with values.
+		QuizParametersSceneCreator quizParametersSceneCreator = new QuizParametersSceneCreator(); 	
+		quizScene = quizParametersSceneCreator.createQuizParametersScene(); 
 
-		MultipleChoiceSceneCreator multipleChoiceSceneCreator = new MultipleChoiceSceneCreator();
-		multipleChoiceScene = multipleChoiceSceneCreator.createMultipleChoiceScene();
 		
-		TrueFalseSceneCreator trueFalseSceneCreator = new TrueFalseSceneCreator();
-		trueFalseScene = trueFalseSceneCreator.createTrueFalseScene();
+		ActualQuizSceneCreator actualQuizSceneCreator = new ActualQuizSceneCreator(null);	
+		actualQuizScene = actualQuizSceneCreator.createActualQuizScene();
 		
 		
-		// understand this.
+		// Calling the setScene method to define homeScene as the initial screen.
 		
-		stage.setScene(homeScene); // Display the homeScene in the stage.
-
-		stage.show(); // Display the application window.
+		stage.setScene(homeScene); 
+	
+		// Display the application window.
+		
+		stage.show(); 
 	}
 }

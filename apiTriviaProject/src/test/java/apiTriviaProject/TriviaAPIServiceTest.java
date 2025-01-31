@@ -51,7 +51,7 @@ public class TriviaAPIServiceTest {
 			TriviaAPIService triviaService = new TriviaAPIService();
 
 			// Call the method that should throw an exception
-			triviaService.getAPIData(0, "9", "easy", "multiple");
+			triviaService.getAPIData(0, 1, "easy", "multiple");
 
 			// If there is no exception, fail the test
 			Assert.fail();
@@ -72,7 +72,7 @@ public class TriviaAPIServiceTest {
 			TriviaAPIService triviaService = new TriviaAPIService();
 
 			// Call the method that should throw an exception
-			triviaService.getAPIData(51, "9", "easy", "multiple");
+			triviaService.getAPIData(51, 1, "easy", "multiple");
 
 			// If there is no exception, fail the test
 			Assert.fail();

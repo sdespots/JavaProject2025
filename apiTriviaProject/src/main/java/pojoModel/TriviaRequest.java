@@ -1,6 +1,8 @@
 package pojoModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class TriviaRequest {
@@ -14,7 +16,7 @@ public class TriviaRequest {
 	private String correctAnswer;
 
 	@JsonProperty("incorrect_answers")
-	private List<String> incorrectAnswers;
+	private ArrayList<String> incorrectAnswers;
 
 	// Getters
 	public String getDifficulty() {
@@ -37,7 +39,7 @@ public class TriviaRequest {
 		return correctAnswer;
 	}
 
-	public List<String> getIncorrectAnswers() {
+	public ArrayList<String> getIncorrectAnswers() {
 		return incorrectAnswers;
 	}
 
@@ -62,7 +64,7 @@ public class TriviaRequest {
 		this.correctAnswer = correctAnswer;
 	}
 
-	public void setIncorrectAnswers(List<String> incorrectAnswers) {
+	public void setIncorrectAnswers(ArrayList<String> incorrectAnswers) {
 		this.incorrectAnswers = incorrectAnswers;
 	}
 

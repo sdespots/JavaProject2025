@@ -3,6 +3,9 @@ package pojoModel;
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import exception.TriviaAPIException;
+import services.TriviaAPIService;
+
 public class TriviaResponse {
 
 	@JsonProperty("response_code")
@@ -33,5 +36,6 @@ public class TriviaResponse {
 	public String toString() {
 		return "TriviaResponse{" + "responseCode=" + responseCode + ", results=" + results + '}';
 	}
+
 
 }
