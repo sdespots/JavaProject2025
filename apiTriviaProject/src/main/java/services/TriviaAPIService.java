@@ -8,11 +8,13 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import exception.TriviaAPIException;
 import pojoModel.TriviaRequest;
 import pojoModel.TriviaResponse;
 import java.net.URI;
+import java.util.ArrayList;
 
 public class TriviaAPIService {
 
@@ -22,7 +24,7 @@ public class TriviaAPIService {
 	public static void main(String[] args) {
 		try {
 			// Call the function
-			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(200, 1, "Medium", "Any");
+			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(2, 19, "easy", "boolean");
 
 			// print response code
 			System.out.println("Response Code: " + triviaResponse.getResponseCode());
@@ -124,7 +126,37 @@ public class TriviaAPIService {
 					ObjectMapper mapper = new ObjectMapper();
 
 					// Deserialize the JSON string into a TriviaResponse object and return it
-					return mapper.readValue(json, TriviaResponse.class);
+					//return mapper.readValue(json, TriviaResponse.class);
+					
+                    // Deserialize the JSON string into a TriviaResponse object
+                    TriviaResponse triviaResponse = mapper.readValue(json, TriviaResponse.class);
+
+                    // Loop through the trivia results list
+                    for (TriviaRequest question : triviaResponse.getResults()) {
+                  	
+                    	// Decode the HTML entities in the question
+                        String decodedQuestion = StringEscapeUtils.unescapeHtml4(question.getQuestion());
+                        
+                        // Decode the HTML entities in the correct answer
+                        String decodedCorrectAnswer = StringEscapeUtils.unescapeHtml4(question.getCorrectAnswer());
+                        
+                        // Create an empty list to keep the decoded incorrect answers
+                        ArrayList<String> decodedIncorrectAnswers = new ArrayList<>();
+                        
+                        for (String answer : question.getIncorrectAnswers()) {
+                        	// Decode each incorrect answer string and add it to the list
+                            decodedIncorrectAnswers.add(StringEscapeUtils.unescapeHtml4(answer));
+                        }
+                        
+                        // Set the decoded question in the TriviaRequest object
+                        question.setQuestion(decodedQuestion);
+                        // Set the decoded correct answer in the TriviaRequest object
+                        question.setCorrectAnswer(decodedCorrectAnswer);
+                        // Set the list of decoded incorrect answers in the TriviaRequest object
+                        question.setIncorrectAnswers(decodedIncorrectAnswers);
+                    }
+
+                    return triviaResponse;
 
 				} else {
 					// Throw an exception if the response entity is empty
