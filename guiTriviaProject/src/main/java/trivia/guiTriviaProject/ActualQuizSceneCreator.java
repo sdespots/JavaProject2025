@@ -200,13 +200,19 @@ public class ActualQuizSceneCreator {
 	
 	public void loadNextQuestion() {
 		
-		// Incrementing the question count by 1.
+		System.out.println("before: " + questionCount);
 		
+		// Incrementing the question count by 1.
 		questionCount++;
+		System.out.println("after: " + questionCount);
+		
+		//System.out.println("after: " + questionCount);
+		
 		
 		// Prepare the next question if total number of questions is more than the incremental question count
 		
 		if (questionCount < questions.size()) {
+			
 			gridPane.getChildren().clear();
 			
 			// Clear the feedback label
@@ -276,7 +282,7 @@ public class ActualQuizSceneCreator {
 		score = 0;
 		correctUserAnswers = 0;
 		incorrectUserAnswers = 0;
-		questionCount = -1; // LOOOOOL
+		questionCount = -1;
 		nextBtn.setDisable(true);
 		submitBtn.setDisable(false);
 		homeBtn.setDisable(true);
