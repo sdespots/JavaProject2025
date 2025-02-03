@@ -10,52 +10,43 @@
 
 	<name>apiTriviaProject</name>
 	<url>http://maven.apache.org</url>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
-
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<version>5.10.0</version>
-			<!--<scope>test</scope> -->
+			<scope>test</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13.2</version>
-			<!--<scope>test</scope> -->
+			<scope>test</scope>
 		</dependency>
-
-		<!-- Jackson Databind for JSON processing -->
 		<!--https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.15.2</version>
 		</dependency>
-
-		<!-- Apache HttpClient for HTTP operations -->
 		<!--https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient-->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.14</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.17.0</version>
+			<artifactId>commons-text</artifactId>
+			<version>1.10.0</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
