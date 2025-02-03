@@ -8,8 +8,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringEscapeUtils;
-
+import org.apache.commons.text.StringEscapeUtils;
 import exception.TriviaAPIException;
 import pojoModel.TriviaRequest;
 import pojoModel.TriviaResponse;
@@ -18,32 +17,25 @@ import java.util.ArrayList;
 
 public class TriviaAPIService {
 
-	// declare the BASE_URL as a constant
 	private static final String BASE_URL = "https://opentdb.com/api.php";
 
 	public static void main(String[] args) {
 		try {
-			// Call the function
 			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(2, 19, "easy", "boolean");
 
-			// print response code
 			System.out.println("Response Code: " + triviaResponse.getResponseCode());
-
 			for (TriviaRequest question : triviaResponse.getResults()) {
 				System.out.println(question);
 			}
 
-			// return the category
 			for (TriviaRequest question : triviaResponse.getResults()) {
 				System.out.println(question.getCategory());
 			}
 
-			// print question
 			for (TriviaRequest question : triviaResponse.getResults()) {
 				System.out.println(question.getQuestion());
 			}
 
-			// Print the trivia response
 			System.out.println("Response: " + triviaResponse);
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
@@ -56,14 +48,12 @@ public class TriviaAPIService {
 
 		// Check if amount is greater than 1 based on the API Documentation
 		if (amount < 1) {
-			// Throw custom exception if amount is less than 1
 			throw new TriviaAPIException("Amount must be greater than 1!");
 		}
 
 		// Check if amount is less than 50 based on the API Documentation
 		if (amount > 50) {
 			throw new TriviaAPIException("Amount must be less than 50!");
-
 		}
 
 		// Create a URIBuilder object and start building the URL with the base URL
@@ -106,7 +96,6 @@ public class TriviaAPIService {
 			System.out.println("Status code: " + status_code);
 
 			if (status_code == 200) {
-
 				System.out.println("The request was successful!");
 
 				// Retrieve the response entity from the HTTP response (retrieves results)
@@ -114,8 +103,6 @@ public class TriviaAPIService {
 
 				// Check if the response entity is not null (contains results)
 				if (entity != null) {
-
-					// System.out.println(entity.getContent());
 
 					// Convert the response entity to a JSON string
 					String json = EntityUtils.toString(entity);
@@ -140,7 +127,6 @@ public class TriviaAPIService {
 
 						// Create an empty list to keep the decoded incorrect answers
 						ArrayList<String> decodedIncorrectAnswers = new ArrayList<>();
-
 						for (String answer : question.getIncorrectAnswers()) {
 							// Decode each incorrect answer string and add it to the list
 							decodedIncorrectAnswers.add(StringEscapeUtils.unescapeHtml4(answer));
@@ -148,29 +134,25 @@ public class TriviaAPIService {
 
 						// Set the decoded question in the TriviaRequest object
 						question.setQuestion(decodedQuestion);
+
 						// Set the decoded correct answer in the TriviaRequest object
 						question.setCorrectAnswer(decodedCorrectAnswer);
+
 						// Set the list of decoded incorrect answers in the TriviaRequest object
 						question.setIncorrectAnswers(decodedIncorrectAnswers);
 					}
-
 					return triviaResponse;
-
 				} else {
 					// Throw an exception if the response entity is empty
 					throw new TriviaAPIException("Empty response from server");
 				}
-
 			} else {
 				// Throw an exception for non-successful response status
 				throw new Exception("Unexpected response status: " + status_code);
 			}
-
 			// in case of URISyntaxException,IOException exceptions
 		} catch (Exception e) {
 			throw new TriviaAPIException("Error occurred while calling the Trivia API", e);
-
 		}
-
 	}
 }
