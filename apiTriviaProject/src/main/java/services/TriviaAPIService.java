@@ -19,30 +19,6 @@ public class TriviaAPIService {
 
 	private static final String BASE_URL = "https://opentdb.com/api.php";
 
-	public static void main(String[] args) {
-		try {
-			TriviaResponse triviaResponse = TriviaAPIService.getAPIData(2, 19, "easy", "boolean");
-
-			System.out.println("Response Code: " + triviaResponse.getResponseCode());
-			for (TriviaRequest question : triviaResponse.getResults()) {
-				System.out.println(question);
-			}
-
-			for (TriviaRequest question : triviaResponse.getResults()) {
-				System.out.println(question.getCategory());
-			}
-
-			for (TriviaRequest question : triviaResponse.getResults()) {
-				System.out.println(question.getQuestion());
-			}
-
-			System.out.println("Response: " + triviaResponse);
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
 	public static TriviaResponse getAPIData(int amount, int category, String difficulty, String type)
 			throws TriviaAPIException, Exception {
 
